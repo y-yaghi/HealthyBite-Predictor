@@ -2,8 +2,90 @@
 
 ### Project Overview
 
-The aim of this project is to determine whether machine learning algorithms can consistently estimate Nutri-Score values of food products (A-E) based on information from an OpenFoodFacts dataset which includes standardised Nutritional Information about these products. Although Nutri-Score provides a simple way to tell consumers about their nutritional intake, it is often not available for every single food product, nor is it always shown on food packaging in the same way in different areas or countries. Therefore, the opportunity exists to produce a Nutri-Score value for any product using the nutrient-containing raw data.
+**Goal:**
+Develop and evaluate machine learning models to predict Nutri-Score grades for packaged food products using nutritional and ingredient-level data, with an emphasis on model interpretability, data quality challenges, and generalization performance.
 
-The project uses an end-to-end machine learning pipeline built around the raw Nutritional Information dataset, as well as methods for cleaning and preparing the data such as removing unneeded information, dealing with missing values, feature engineering and scaling the data prior to developing and evaluating models.
+**Project Overview**
+This repository contains a complete end-to-end machine learning pipeline for Nutri-Score prediction using the OpenFoodFacts database. The project covers data exploration, cleaning, feature engineering, model development, evaluation, and interpretation, with a focus on understanding how nutritional attributes influence food health ratings.
 
-A variety of models were evaluated with this data set starting with a logistic regression model which served as the baseline model; in addition, several tree-based methods including Random Forest, XGBoost, LightGBM, and a stacking ensemble built upon these tree-based methods were constructed. The results of this project demonstrate that tree-based models produce very good accuracy and have strong generalisability, thereby providing additional evidence to support the conclusion that Nutri-Score can be reliably predicted from nutrient content alone. The findings in this research also highlight the potential role for machine learning in providing consumers with consistent nutrition guidance with regards to food products that do not have adequate front-of-package labelling.
+**Focus Areas Include**
+- Nutritional quality assessment
+- Nutri-Score grade classification (A–E)
+- Feature engineering using macronutrients and derived ratios
+- Model interpretability and generalization
+- Handling real-world, noisy food labeling data
+
+**Data**
+Source:
+- OpenFoodFacts (public, crowd-sourced food database)
+Challenges:
+- High missingness across many features
+- Heavy-tailed and skewed distributions
+- Multicollinearity among nutritional variables
+- Moderate class imbalance across Nutri-Score grades
+
+**Methods**
+Models:
+- Logistic Regression
+- Random Forest
+- XGBoost
+- LightGBM
+- Stacking Ensemble (RF + XGBoost + Logistic Regression)
+Techniques
+- Data cleaning with missingness thresholds and valid-range filtering
+- Winsorization and RobustScaler for outlier handling
+- Feature engineering and ratio construction
+- Multicollinearity analysis (correlation heatmaps, VIF)
+- Model comparison using accuracy, macro F1, ROC/AUC
+- Overfitting analysis (train vs test performance)
+- Model interpretability via feature importance and confusion matrices
+
+**Key Results**
+- **Best-performing models:** LightGBM and XGBoost
+- **Overall performance:**
+    - Test accuracy ≈ 0.98
+    - Strong macro F1 across Nutri-Score classes
+    - High multiclass ROC AUC with clear class separability
+- **Most influential features:**
+    - Salt
+    - Energy
+    - Sugars
+    - Saturated fat
+    - Fiber
+    - Protein-to-energy ratio
+- **Error patterns:**
+    - Most misclassifications occur between adjacent Nutri-Score grades (e.g., B vs C, D vs E), which is consistent with the continuous nature of nutritional quality
+
+**Tools & Technologies**
+- Python (pandas, NumPy, scikit-learn)
+- XGBoost, LightGBM
+- matplotlib / seaborn
+- Jupyter Notebook
+- GitHub for version control and project organization
+
+Repository Structure 
+```
+data/                 # Raw and processed datasets
+notebooks/            # Data cleaning, modeling, evaluation notebooks
+visualizations/
+  Exploration_Cleaning/
+  Evaluation/
+report/               # Final written report
+presentation/         # Slides summarizing findings
+```
+
+**Limitations & Future Work**
+- OpenFoodFacts data quality depends on user-entered labels
+- Limited availability of micronutrient and additive details for many products
+- Nutri-Score is a simplified proxy for nutritional health
+- Future extensions could include:
+    - Ingredient text analysis using NLP
+    - External validation on country-specific datasets
+    - Calibration analysis for consumer-facing applications
+    - SHAP-based local explanations for individual products
+
+Tighten this into a shorter “portfolio-style” README
+
+Rewrite it to sound more research-oriented or more industry-oriented
+
+Align it exactly with a CDS 403 grading rubric
