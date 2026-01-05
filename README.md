@@ -69,7 +69,8 @@ data/                 # Raw and processed datasets
 notebooks/            # Data cleaning, modeling, evaluation notebooks
 visualizations/
   Exploration_Cleaning/
-  Evaluation/
+  Cleaning_Modeling/
+  Modeling/
 report/               # Final written report
 presentation/         # Slides summarizing findings
 ```
